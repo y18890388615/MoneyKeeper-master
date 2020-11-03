@@ -9,18 +9,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 public abstract class BaseFragment extends Fragment {
-    private Unbinder mUnbinder;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView = LayoutInflater.from(getContext()).inflate(getLayoutId(), container, false);
-        mUnbinder = ButterKnife.bind(this, mView);
         initView();
         return mView;
     }
@@ -46,7 +41,6 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        mUnbinder.unbind();
         super.onDestroy();
     }
 }

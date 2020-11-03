@@ -185,23 +185,19 @@ dependencies {
     // 圆形 ImageView
     implementation deps.circleimageview
 
-    //网络OKGO
+//    //网络OKGO
     implementation 'com.lzy.net:okgo:3.0.4'
     //以下三个选择添加，okrx和okrx2不能同时使用
-//    api 'com.lzy.net:okrx:1.0.2'
     implementation 'com.lzy.net:okrx2:2.0.2'
     implementation 'com.lzy.net:okserver:2.0.5'
 
-    //常用code
-    implementation 'com.blankj:utilcodex:1.25.8'
+//    //常用code
+    implementation 'com.blankj:utilcode:1.25.8'
 
-    //gson
+//    //gson
     api 'com.google.code.gson:gson:2.8.5'
+//
 
-    //注解依赖
-    implementation 'com.jakewharton:butterknife:10.2.3'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
-
-    //弹窗
-    implementation 'com.lxj:xpopup:1.9.0'
+//    //弹窗
+    implementation 'com.lxj:xpopup:1.1.0'
 }

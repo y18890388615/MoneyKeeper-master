@@ -8,11 +8,8 @@ import androidx.annotation.Nullable;
 
 import com.blankj.utilcode.util.BarUtils;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity {
-    private Unbinder mUnbinder;
     public Context mContext;
 
 
@@ -22,7 +19,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutID());
         BarUtils.setNavBarVisibility(this, false);//隐藏导航栏
         // ButterKnife
-        mUnbinder = ButterKnife.bind(this);
         mContext = this;
         initView(savedInstanceState);
         initData();
@@ -44,6 +40,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mUnbinder.unbind();
     }
 }

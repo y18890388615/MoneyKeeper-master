@@ -13,18 +13,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import me.bakumon.moneykeeper.R;
 import me.bakumon.moneykeeper.shell.base.BaseActivity;
 
 public class WebActivity extends BaseActivity {
 
-    @BindView(R.id.webView)
     WebView webView;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
 
     @Override
     public int getLayoutID() {
@@ -34,6 +28,7 @@ public class WebActivity extends BaseActivity {
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     public void initView(Bundle savedInstanceState) {
+        webView = findViewById(R.id.webView);
         String web_url = getIntent().getStringExtra("web_url");
         webView.setWebViewClient(new WebViewClient() {
             @Override
@@ -41,7 +36,6 @@ public class WebActivity extends BaseActivity {
                 return true;
             }
         });
-        tvTitle.setText("详情");
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setAllowFileAccess(true);
@@ -78,13 +72,6 @@ public class WebActivity extends BaseActivity {
     @Override
     public void initData() {
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 
     @Override

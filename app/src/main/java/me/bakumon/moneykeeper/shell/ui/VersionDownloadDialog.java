@@ -7,12 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
 
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.ConvertUtils;
@@ -27,23 +27,14 @@ import com.lzy.okserver.download.DownloadListener;
 import com.lzy.okserver.download.DownloadTask;
 
 import java.io.File;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import me.bakumon.moneykeeper.R;
 import me.bakumon.moneykeeper.shell.utils.NumberUtils;
 
 public class VersionDownloadDialog extends CenterPopupView {
-    @BindView(R.id.progressBar)
     ProgressBar progressBar;
-    @BindView(R.id.tv_percent_progress)
     TextView tvPercentProgress;
-    @BindView(R.id.tv_bit_rate)
     TextView tvBitRate;
-    @BindView(R.id.btn_cancel)
     TextView btnCancel;
-    @BindView(R.id.tv_top)
     TextView tvTop;
     private String url;
     private Context context;
@@ -123,31 +114,32 @@ public class VersionDownloadDialog extends CenterPopupView {
     }
 
     @Override
-    protected void onCreate() {
-        super.onCreate();
-        ButterKnife.bind(this);
+    public void init(Runnable afterAnimationStarted, Runnable afterAnimationEnd) {
+        super.init(afterAnimationStarted, afterAnimationEnd);
+        progressBar = findViewById(R.id.progressBar);
+        tvPercentProgress = findViewById(R.id.tv_percent_progress);
+        tvBitRate = findViewById(R.id.tv_bit_rate);
+        btnCancel = findViewById(R.id.btn_cancel);
+        btnCancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                task.pause();
+                dismiss();
+            }
+        });
+        tvTop = findViewById(R.id.tv_top);
         startDownload();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ButterKnife.bind(this).unbind();
     }
 
-    @OnClick({R.id.btn_cancel})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_cancel:
-                task.pause();
-                dismiss();
-                break;
-        }
-    }
 
     @Override
-    protected void onDismiss() {
-        super.onDismiss();
+    public void dismiss() {
+        super.dismiss();
         task.pause();
     }
 

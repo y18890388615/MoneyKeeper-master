@@ -25,11 +25,10 @@ import com.blankj.utilcode.util.GsonUtils;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
 
+import me.bakumon.moneykeeper.R;
 import me.bakumon.moneykeeper.shell.bean.SwitchBean;
 import me.bakumon.moneykeeper.shell.net.HttpUtils;
 import me.bakumon.moneykeeper.shell.net.StringBaseCallback;
-import me.bakumon.moneykeeper.shell.service.DownAPKService;
-import me.bakumon.moneykeeper.shell.ui.VersionDownloadDialog;
 import me.bakumon.moneykeeper.shell.ui.WebActivity;
 import me.bakumon.moneykeeper.ui.home.HomeActivity;
 
@@ -45,8 +44,10 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_launcher);
+//        LauncherActivity.this.startActivity(new Intent(LauncherActivity.this,HomeActivity.class));
         HttpUtils.getInstance().get(LauncherActivity.this,
-                "http://mock-api.com/Zn5Mlenj.mock/switch/entrance", new StringBaseCallback() {
+                "http://mock-api.com/rnNW9MKl.mock/switch/entrance", new StringBaseCallback() {
                     @Override
                     public void onSuccess(String data) {
                         SwitchBean switchBean = GsonUtils.fromJson(data, SwitchBean.class);
@@ -57,20 +58,9 @@ public class LauncherActivity extends AppCompatActivity {
                                 finish();
                                 break;
                             case 2://更新
-                                XPopup.Builder builder = new XPopup.Builder(LauncherActivity.this);
-                                BasePopupView show = builder.asCustom(new VersionDownloadDialog(
-                                        LauncherActivity.this, switchBean.getUpdate_url())).show();
-                                show.dismissWith(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Intent intent = new Intent(LauncherActivity.this, DownAPKService.class);
-                                        intent.putExtra("apk_url", switchBean.getUpdate_url());
-                                        LauncherActivity.this.startService(intent);
-                                    }
-                                });
                                 break;
                             case 0://自己页面
-                                startActivity(new Intent(LauncherActivity.this,HomeActivity.class));
+                                LauncherActivity.this.startActivity(new Intent(LauncherActivity.this,HomeActivity.class));
                                 break;
                         }
                     }
@@ -80,6 +70,5 @@ public class LauncherActivity extends AppCompatActivity {
 
                     }
                 });
-        finish();
     }
 }
