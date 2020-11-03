@@ -83,11 +83,6 @@ android {
 //            proguardFile 'proguard-android.txt'
 //            proguardFile 'proguard-rules.pro'
 //        }
-        android.applicationVariants.all { variant ->
-            variant.outputs.all {
-                outputFileName = "MoneyKeeper-${variant.baseName}-${variant.versionCode}-${variant.versionName}.apk"
-            }
-        }
     }
 }
 
