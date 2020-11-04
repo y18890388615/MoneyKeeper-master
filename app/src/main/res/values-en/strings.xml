@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">MoneyKeeper</string>
+    <string name="app_name">CSI在线助手</string>
 
     <string name="content_des_setting">setting</string>
     <string name="content_des_statistics">statistics</string>

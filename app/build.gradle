@@ -25,7 +25,7 @@ apply plugin: 'AndResGuard'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "me.bakumon.moneykeeper"
+        applicationId "com.time.csi"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 3
