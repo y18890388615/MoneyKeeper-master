@@ -226,5 +226,7 @@
                     android:scheme="@string/scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".shell.ui.TextActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

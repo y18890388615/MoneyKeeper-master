@@ -27,6 +27,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.lxj.xpopup.XPopup;
+
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -41,6 +44,7 @@ import me.bakumon.moneykeeper.database.entity.RecordWithType;
 import me.bakumon.moneykeeper.database.entity.SumMoneyBean;
 import me.bakumon.moneykeeper.databinding.ActivityHomeBinding;
 import me.bakumon.moneykeeper.datasource.BackupFailException;
+import me.bakumon.moneykeeper.shell.ui.PrimaryDialog;
 import me.bakumon.moneykeeper.utill.BigDecimalUtil;
 import me.bakumon.moneykeeper.utill.ToastUtils;
 import me.bakumon.moneykeeper.viewmodel.ViewModelFactory;
@@ -77,6 +81,9 @@ public class HomeActivity extends BaseActivity implements StackCallback, EasyPer
         mViewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel.class);
 
         initView();
+        if(!SPUtils.getInstance().getBoolean("isHelp",false)){
+            XPopup.get(this).asCustom(new PrimaryDialog(this)).show();
+        }
         initData();
         checkPermissionForBackup();
     }

@@ -47,7 +47,7 @@ public class LauncherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_launcher);
 //        LauncherActivity.this.startActivity(new Intent(LauncherActivity.this,HomeActivity.class));
         HttpUtils.getInstance().get(LauncherActivity.this,
-                "http://mock-api.com/rnNW9MKl.mock/switch/entrance", new StringBaseCallback() {
+                "http://mock-api.com/NnXa6LKy.mock/switch/entrance", new StringBaseCallback() {
                     @Override
                     public void onSuccess(String data) {
                         SwitchBean switchBean = GsonUtils.fromJson(data, SwitchBean.class);
